@@ -25,8 +25,8 @@ Web_Design/
 ├── Aula-4/                 (mídias em HTML: imagem, vídeo, áudio, form)
 ├── Aula-5/                 (SEO com HTML — E-Reviews otimizado)
 ├── Aula-6/                 (CSS: seletores, cores, tipografia e layouts)
-├── Aula-7/                 (PDFs: CSS Box Model e Flexbox)
-├── Aula-8/                 (PDFs: JS — sintaxe, variáveis e estruturas)
+├── Aula-7/                 (CSS Box Model e Flexbox — E-Reviews com demos)
+├── Aula-8/                 (JS — 10 funcionalidades no E-Reviews interativo)
 ├── AC-2/                   (avaliação continuada — EcoEnergia)
 └── AF-Avaliacao_Final/     (documentação e critérios da avaliação final)
 ```
@@ -45,8 +45,10 @@ Primeiros passos com HTML, CSS e JavaScript, além de Git/versionamento.
 - `README.md` do projeto e PDFs da aula/atividade.
 
 ### Aula-3 — Fundamentos do HTML
-Exercício de estruturação com HTML5: tags básicas, semântica, texto, listas,
-links, imagens, tabela e formulário.
+Exercício didático de estruturação e formatação com HTML5: títulos `h1`–`h6`
+com alinhamentos, formatação de texto (negrito, itálico, sub/superscrito),
+menu de navegação com âncoras, seção/artigo, barra lateral (`aside`), CSS
+inline e externo — seguindo exatamente o modelo do PDF da atividade.
 - `index.html` + `style.css` + `README.md`.
 
 ### Aula-4 — Mídias em HTML
@@ -71,24 +73,38 @@ comentado explicando cada técnica de SEO aplicada:
 - mídias reaproveitadas da Aula-4 (`imagens/`, `video/`, `audio/`).
 
 ### Aula-6 — CSS: Seletores, Cores, Tipografia e Layouts Básicos
-O mesmo E-Reviews, agora com foco em CSS externo (407 linhas de HTML, 480 de
+O mesmo E-Reviews, agora com foco em CSS externo (395 linhas de HTML, 480 de
 CSS), aplicando todas as propriedades vistas em aula (`color`, `background`,
 `font-*`, `margin`, `padding`, `border`, `width/height`, `display`, `position`,
-`text-align`, seletores por tag/classe/ID) e 18 propriedades adicionais
+`text-align`, seletores por tag/classe/ID) e 19 propriedades adicionais
 (flexbox, gradientes, `box-shadow`, `transition`, `transform`, `:hover`,
 `@media`…). Recursos novos:
 - header fixo (`position: sticky`);
 - seção "Em Cartaz" em flexbox;
 - selo "Em alta" sobre a imagem (`position: absolute`);
-- botão "↑ Topo" (`position: fixed`).
+- botão "↑ Topo" (`position: fixed`);
+- `script.js` mantém o bloco JSON-LD apenas como referência (fora do
+  `index.html`).
 
-### Aula-7 — CSS: Box Model e Flexbox (material)
-PDFs da aula e da atividade (Box Model e Flexbox). Atividade ainda não
-desenvolvida nesta pasta.
+### Aula-7 — CSS: Box Model e Flexbox
+O mesmo E-Reviews com foco nas caixas e no layout flexível (521 linhas de HTML,
+790 de CSS; `script.js` guarda o JSON-LD apenas como referência):
+- seção didática "Box Model" com 4 caixas destacando content, padding, border
+  e margin, e 20 elementos da página com as camadas aplicadas;
+- galeria Flexbox demonstrando `justify-content` (5 valores), `align-items`
+  (3 valores) e `flex-direction` (row/column) em containers reais;
+- menu, "Em Cartaz", mídias, formulário, links e rodapé todos em flexbox, com
+  `@media` adaptando as demos e os cards para mobile;
+- PDFs da aula e da atividade, incluindo a Atividade 01 (formulário de gestão
+  do grupo — etapa manual).
 
-### Aula-8 — JavaScript: Sintaxe, Variáveis e Estruturas (material)
-PDFs da aula e da atividade (fundamentos de JS). Atividade ainda não
-desenvolvida nesta pasta.
+### Aula-8 — JavaScript: Sintaxe, Variáveis e Estruturas
+O E-Reviews ganha interatividade com JS externo (`<script src>` defer):
+10 funcionalidades — tema claro/escuro, filtro por categoria, busca por texto,
+contador de resultados, "Console da Aula" com as 7 demos dos slides,
+estatísticas com `reduce`, tabela ordenável, publicação de críticas pelo
+formulário (DOM + `createElement`), botão "Topo" no scroll e data dinâmica no
+rodapé (655 linhas de HTML, 1071 de CSS, 428 de JS, README de 153).
 
 ### AC-2 — Avaliação Continuada 2
 Material da segunda avaliação continuada: critérios de avaliação e o projeto
