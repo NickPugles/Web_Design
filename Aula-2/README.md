@@ -1,4 +1,4 @@
-## Aula 04 - Mídias em HTMl
+## Aula 02 - Introdução a Web Design e Controle de Versões
 
 ## Meu Site
 
@@ -40,7 +40,7 @@ Projeto desenvolvido para demonstrar a criação de uma página web utilizando H
 14. Alteração dinâmica de conteúdo com JavaScript.
 
 ## Execução do Projeto:
-Para visualizar o projeto, basta abaixar ou clonar o repositório, abrir a pasta do projeto e executar o arquivo index.html em um navegador de internet.
+Para visualizar o projeto, basta baixar ou clonar o repositório, abrir a pasta do projeto e executar o arquivo index.html em um navegador de internet.
 
 ## Objetivo:
 Aplicar conhecimentos de HTML5, CSS3 e JavaScript por meio da construção de uma página web, demonstrando a separação entre estrutura, apresentação visual e programação.
