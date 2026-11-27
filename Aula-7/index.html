@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<!-- Declara o documento como HTML5 e define o idioma pt-BR.
+     SEO: o atributo lang ajuda buscadores e leitores de tela a entender o idioma. -->
+<html lang="pt-BR">
+
+<head>
+    <!-- charset: garante que acentos e caracteres especiais sejam lidos corretamente -->
+    <meta charset="UTF-8">
+
+    <!-- viewport: essencial para responsividade, fator de ranqueamento no Google -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO: título único e descritivo, com a palavra-chave principal no início -->
+    <title>E-Reviews | Críticas de Filmes, Séries, Livros e Jogos</title>
+
+    <!-- SEO: meta description clara com até ~155 caracteres, usada como resumo nos resultados -->
+    <meta name="description" content="E-Reviews: opiniões, artigos e críticas honestas sobre filmes, séries, livros e jogos. Descubra o que vale sua atenção.">
+
+    <!-- SEO: palavras-chave relacionadas ao conteúdo (uso moderado, sem exagero) -->
+    <meta name="keywords" content="críticas, reviews, filmes, séries, livros, jogos, entretenimento">
+
+    <!-- SEO: autor da página -->
+    <meta name="author" content="Grupo E - E-Reviews">
+
+    <!-- SEO: permite a indexação por padrão (evita bloquear conteúdo principal) -->
+    <meta name="robots" content="index, follow">
+
+    <!-- SEO: tag canonical aponta a URL principal, evitando penalização por conteúdo duplicado -->
+    <link rel="canonical" href="https://e-reviews.vercel.app/">
+
+    <!-- Open Graph: melhora a pré-visualização quando a página é compartilhada em redes sociais -->
+    <meta property="og:title" content="E-Reviews | Críticas de Filmes, Séries, Livros e Jogos">
+    <meta property="og:description" content="Opiniões, artigos e críticas honestas sobre filmes, séries, livros e jogos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://e-reviews.vercel.app/">
+    <meta property="og:image" content="imagens/capa_do_video.jpeg">
+    <meta property="og:locale" content="pt_BR">
+
+    <!-- Favicon: reforça a identidade visual e pode aumentar a taxa de cliques (CTR) -->
+    <link rel="icon" href="imagens/capa_do_video.jpeg" type="image/jpeg">
+
+    <!-- AULA 7 (item 1): conexão do HTML com o CSS EXTERNO pela tag <link>.
+         Toda a estilização (Box Model + Flexbox) vive no style.css -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- SEO: os dados estruturados JSON-LD (schema.org WebSite) foram movidos
+         para script.js como referência do bloco aplicado no site do grupo -->
+</head>
+
+<body>
+
+    <!-- CABEÇALHO: elemento de Box Model completo (content + padding + border-bottom + margin).
+         position: sticky mantém o menu fixo no topo ao rolar -->
+    <header class="topo" id="inicio">
+        <!-- SEO: apenas UM h1 por página, descrevendo o assunto principal -->
+        <h1>E-Reviews</h1>
+        <h2 class="subtitulo">Críticas de Filmes, Séries, Livros e Jogos</h2>
+
+        <!-- FLEXBOX #1: navegação principal em linha.
+             display: flex + justify-content: center + gap distribuem os itens -->
+        <nav aria-label="Navegação principal">
+            <ul class="menu-flex">
+                <li><a href="#box-model">Box Model</a></li>
+                <li><a href="#flexbox">Flexbox</a></li>
+                <li><a href="#filmes">Críticas de Filmes</a></li>
+                <li><a href="#series">Séries</a></li>
+                <li><a href="#livros">Livros</a></li>
+                <li><a href="#enviar">Envie sua Crítica</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- BREADCRUMB: trilha de navegação.
+         FLEXBOX #2: <ol> com display: flex + gap, sem marcadores -->
+    <nav class="breadcrumb" aria-label="Trilha de navegação">
+        <ol>
+            <li><a href="index.html">Início</a></li>
+            <li>E-Reviews</li>
+        </ol>
+    </nav>
+
+    <!-- CONTEÚDO PRINCIPAL: tag semântica <main> delimita o corpo da página -->
+    <main>
+
+        <!-- ============================================================
+             SEÇÃO DE APRESENTAÇÃO (hero)
+             Box Model: content (textos), padding 28px, border e margin
+             ============================================================ -->
+        <section class="hero" id="introducao">
+            <h2>Bem-vindo ao E-Reviews</h2>
+
+            <p id="introducao-texto">
+                O E-Reviews é um espaço dedicado a opiniões, artigos e críticas
+                honestas sobre diferentes tipos de mídia: filmes, séries, livros
+                e jogos. Nosso objetivo é ajudar você a descobrir o que realmente
+                vale a sua atenção, de maneira simples e divertida.
+            </p>
+
+            <p>
+                Nesta versão do site, a Aula 7 entra no detalhe do CSS que organiza
+                a página: o Box Model, que trata cada elemento como uma caixa com
+                conteúdo, padding, borda e margem, e o Flexbox, que alinha e
+                distribui essas caixas em linhas e colunas de forma responsiva.
+                As duas seções a seguir demonstram cada conceito na prática.
+            </p>
+        </section>
+
+        <!-- ============================================================
+             NOVA SEÇÃO (Aula 7 / item 2): BOX MODEL
+             Cada .box-item é um dos elementos que recebem valores de
+             content, padding, border e margin no CSS (20 elementos no
+             total da página — ver README). Os quatro primeiros caixas
+             destacam uma camada cada do modelo.
+             ============================================================ -->
+        <section id="box-model">
+            <h2>Box Model: as 4 camadas de cada elemento</h2>
+
+            <p>
+                No CSS, todo elemento é uma caixa retangular com quatro camadas:
+                o <strong>content</strong> (o que aparece dentro), o
+                <strong>padding</strong> (espaço interno até a borda), a
+                <strong>border</strong> (a moldura) e a <strong>margin</strong>
+                (o espaço externo que empurra as caixas vizinhas). Veja cada
+                camada aplicada com valores diferentes:
+            </p>
+
+            <!-- FLEXBOX #3: container dos 4 exemplos lado a lado, quebrando no mobile -->
+            <div class="box-demo">
+                <!-- Caixa 1: conteúdo estreito, sem camadas extras -->
+                <div class="box-item box-content">
+                    <h3>Content</h3>
+                    <p>Área do texto: 120×90px definidos por width e height.</p>
+                </div>
+
+                <!-- Caixa 2: padding grande empurrando o conteúdo para dentro -->
+                <div class="box-item box-padding">
+                    <h3>Padding</h3>
+                    <p>Espaço interno de 24px entre o texto e a borda.</p>
+                </div>
+
+                <!-- Caixa 3: border espessa destacando a moldura -->
+                <div class="box-item box-border">
+                    <h3>Border</h3>
+                    <p>Borda sólida de 8px envolvendo o padding e o conteúdo.</p>
+                </div>
+
+                <!-- Caixa 4: margin externa separando a caixa das vizinhas -->
+                <div class="box-item box-margin">
+                    <h3>Margin</h3>
+                    <p>Margem externa de 28px: repare na distância das vizinhas.</p>
+                </div>
+            </div>
+
+            <p class="dica">
+                O <code>box-sizing: border-box</code> no reset faz width/height
+                incluírem padding e borda, deixando o cálculo do layout previsível.
+            </p>
+        </section>
+
+        <!-- ============================================================
+             NOVA SEÇÃO (Aula 7 / item 3): FLEXBOX
+             Demonstração visual dos valores de justify-content e
+             align-items, propriedades usadas para organizar os elementos
+             de forma responsiva.
+             ============================================================ -->
+        <section id="flexbox">
+            <h2>Flexbox: alinhando e distribuindo caixas</h2>
+
+            <p>
+                Flexbox é o modelo de layout unidimensional do CSS: um container
+                com <code>display: flex</code> posiciona os filhos sem
+                posicionamento manual. As fileiras abaixo mostram os principais
+                valores de <code>justify-content</code>, que distribui o espaço
+                ao longo do eixo principal:
+            </p>
+
+            <!-- FLEXBOX #4 a #8: cinco containers com justify-content diferente.
+                 Cada container é também um elemento com padding/border/margin -->
+            <div class="flex-galeria">
+                <div class="flex-linha justify-start">
+                    <span>1</span><span>2</span><span>3</span>
+                </div>
+                <div class="flex-linha justify-center">
+                    <span>1</span><span>2</span><span>3</span>
+                </div>
+                <div class="flex-linha justify-between">
+                    <span>1</span><span>2</span><span>3</span>
+                </div>
+                <div class="flex-linha justify-around">
+                    <span>1</span><span>2</span><span>3</span>
+                </div>
+                <div class="flex-linha justify-evenly">
+                    <span>1</span><span>2</span><span>3</span>
+                </div>
+            </div>
+
+            <ul class="legendas">
+                <li><code>flex-start</code> — itens encostados no início</li>
+                <li><code>center</code> — itens agrupados no meio</li>
+                <li><code>space-between</code> — espaços iguais entre itens</li>
+                <li><code>space-around</code> — espaço ao redor de cada item</li>
+                <li><code>space-evenly</code> — espaço idêntico em tudo</li>
+            </ul>
+
+            <h3>align-items no eixo cruzado</h3>
+            <p>
+                Enquanto <code>justify-content</code> cuida da linha,
+                <code>align-items</code> alinha os itens na vertical do container:
+            </p>
+
+            <!-- FLEXBOX #9 a #11: alinhamentos verticais flex-start, center, flex-end -->
+            <div class="flex-galeria">
+                <div class="flex-coluna-alta align-start">
+                    <span>topo</span>
+                </div>
+                <div class="flex-coluna-alta align-center">
+                    <span>meio</span>
+                </div>
+                <div class="flex-coluna-alta align-end">
+                    <span>base</span>
+                </div>
+            </div>
+
+            <h3>flex-direction: linha e coluna</h3>
+            <!-- FLEXBOX #12 e #13: row (padrão) e column no mesmo estilo de caixa -->
+            <div class="flex-galeria">
+                <div class="flex-linha dir-row">
+                    <span>row</span><span>→</span><span>linha</span>
+                </div>
+                <div class="flex-bloco dir-column">
+                    <span>column</span><span>↓</span><span>coluna</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             SEÇÃO "EM CARTAZ" (herdada da Aula 6)
+             FLEXBOX #14: .featured com space-between + stretch + wrap
+             ============================================================ -->
+        <section id="em-cartaz">
+            <h2>Em Cartaz</h2>
+
+            <div class="featured">
+                <div class="featured-card">
+                    <h3>Filme</h3>
+                    <p>Jogos Vorazes</p>
+                </div>
+                <div class="featured-card">
+                    <h3>Série</h3>
+                    <p>Shadowhunters</p>
+                </div>
+                <div class="featured-card">
+                    <h3>Livro</h3>
+                    <p>Flores para Algernon</p>
+                </div>
+                <div class="featured-card">
+                    <h3>Jogo</h3>
+                    <p>Aventura Épica</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             SEÇÃO DE FILMES
+             .critica é um elemento de Box Model completo: content (h3,
+             imagem e parágrafos), padding 16px, border 1px e margin auto
+             ============================================================ -->
+        <section id="filmes">
+            <h2>Críticas de Filmes</h2>
+
+            <!-- article .critica-img-wrap: position relative para o selo absoluto -->
+            <article class="critica">
+                <div class="critica-img">
+                    <img src="imagens/filme-jogos_vorazes.webp"
+                         alt="Cena do filme Jogos Vorazes, distopia de aventura e sobrevivência"
+                         width="300" height="200" loading="lazy">
+                    <span class="badge">Em alta</span>
+                </div>
+            </article>
+
+            <article class="critica-texto">
+                <h3>Jogos Vorazes</h3>
+                <p class="nota">Nota: 8.5 / 10</p>
+                <p>
+                    Uma distopia visualmente impactante que prende do início ao fim,
+                    com uma protagonista forte e cenas de ação bem coreografadas.
+                </p>
+                <p>
+                    O filme equilibra entretenimento e crítica social: a arena é
+                    ao mesmo tempo espetáculo dentro da história e reflexão sobre
+                    quem consome esse espetáculo. A fotografia aproveita cenários
+                    reais para criar grandiosidade, e o ritmo alterna tensão e
+                    pausas que dão profundidade aos personagens.
+                </p>
+            </article>
+        </section>
+
+        <!-- ============================================================
+             SEÇÃO DE SÉRIES
+             ============================================================ -->
+        <section id="series">
+            <h2>Críticas de Séries</h2>
+
+            <article class="critica">
+                <img src="imagens/serie-shadowhunters.webp"
+                     alt="Elenco de Shadowhunters em cena de fantasia urbana"
+                     width="300" height="200" loading="lazy">
+            </article>
+
+            <article class="critica-texto">
+                <h3>Shadowhunters</h3>
+                <p class="nota">Nota: 7.8 / 10</p>
+                <p>
+                    Uma série de fantasia urbana envolvente, perfeita para maratonar,
+                    com personagens cativantes e reviravoltas bem construídas.
+                </p>
+                <p>
+                    Os episódios curtos ajudam a manter o ritmo, e a química entre
+                    o elenco é o grande trunfo da produção. Embora alguns arcos
+                    secundários se estendam mais do que o necessário, o mundo de
+                    caçadores de sombras é criativo e a mitologia prende o público.
+                </p>
+            </article>
+        </section>
+
+        <!-- ============================================================
+             SEÇÃO DE LIVROS
+             ============================================================ -->
+        <section id="livros">
+            <h2>Críticas de Livros</h2>
+
+            <article class="critica">
+                <img src="imagens/livro-flores_algernon.webp"
+                     alt="Capa do livro Flores para Algernon, romance de ficção científica"
+                     width="300" height="200" loading="lazy">
+            </article>
+
+            <article class="critica-texto">
+                <h3>Flores para Algernon</h3>
+                <p class="nota">Nota: 9.0 / 10</p>
+                <p>
+                    Uma leitura envolvente que mistura ficção científica e emoção,
+                    com uma narrativa ágil e memorável.
+                </p>
+                <p>
+                    Contado em relatórios, o livro acompanha Charlie, cuja
+                    inteligência artificialmente elevada o faz enxergar o mundo e
+                    as pessoas ao seu redor de forma nova. É o tipo de leitura que
+                    faz o leitor repensar o próprio cotidiano muito depois da
+                    última página.
+                </p>
+            </article>
+        </section>
+
+        <!-- ============================================================
+             SEÇÃO DE MÍDIAS: vídeo, áudio e ranking
+             FLEXBOX #15: .midias empilha vídeo e áudio em coluna
+             ============================================================ -->
+        <section id="jogos">
+            <h2>Crítica em Vídeo e Trilha Sonora</h2>
+
+            <div class="midias">
+                <!-- Mídia: vídeo com controls, largura e poster (imagem de capa) -->
+                <video controls width="320" poster="imagens/capa_do_video.jpeg">
+                    <source src="video/video.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeo.
+                </video>
+
+                <!-- Mídia: áudio com duas fontes para compatibilidade entre navegadores -->
+                <audio controls>
+                    <source src="audio/musica.mp3" type="audio/mpeg">
+                    <source src="audio/musica.ogg" type="audio/ogg">
+                    Seu navegador não suporta áudio.
+                </audio>
+            </div>
+
+            <!-- SEO: lista ordenada com os melhores jogos (conteúdo escaneável) -->
+            <h3>Top 5 Jogos do Mês</h3>
+            <ol class="ranking">
+                <li>Aventura Épica</li>
+                <li>Corrida Noturna</li>
+                <li>RPG dos Reinos</li>
+                <li>Estratégia Espacial</li>
+                <li>Plataforma Colorida</li>
+            </ol>
+        </section>
+
+        <!-- ============================================================
+             SEÇÃO DE TABELA
+             th e td são elementos de Box Model: content (texto),
+             padding 10/14px, border 1px e margin 0 (reset)
+             ============================================================ -->
+        <section id="ranking-geral">
+            <h2>Resumo das Notas</h2>
+
+            <table>
+                <caption>Médias das críticas por categoria</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Título</th>
+                        <th scope="col">Nota</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Filme</td>
+                        <td>Jogos Vorazes</td>
+                        <td>8.5</td>
+                    </tr>
+                    <tr>
+                        <td>Série</td>
+                        <td>Shadowhunters</td>
+                        <td>7.8</td>
+                    </tr>
+                    <tr>
+                        <td>Livro</td>
+                        <td>Flores para Algernon</td>
+                        <td>9.0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ============================================================
+             SEÇÃO DE METODOLOGIA: texto extra relevante para SEO
+             ============================================================ -->
+        <section id="metodologia">
+            <h2>Como fazemos nossas críticas</h2>
+            <p>
+                Toda obra avaliada pela equipe do E-Reviews passa por um processo
+                semelhante. Primeiro, consumimos o conteúdo por completo, sem
+                cortes, para formar uma opinião justa. Depois, cada integrante
+                atribui uma nota independente em cinco critérios: roteiro,
+                atuação ou jogabilidade, direção ou design, trilha sonora e
+                valor de replay ou releitura.
+            </p>
+            <p>
+                A nota final que você vê nas tarjetas é a média desses critérios,
+                arredondada em uma escala de zero a dez. Nosso compromisso é com
+                a honestidade: não aceitamos patrocínio que influencie as notas,
+                e sinalizamos claramente quando um título nos agradou menos.
+            </p>
+        </section>
+
+        <!-- ============================================================
+             SEÇÃO DE FORMULÁRIO
+             FLEXBOX #16: form em coluna (flex-direction: column + gap)
+             inputs recebem padding, border e margin próprios
+             ============================================================ -->
+        <section id="enviar">
+            <h2>Envie sua Crítica</h2>
+
+            <form>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="voce@exemplo.com" required>
+
+                <label for="categoria">Categoria:</label>
+                <select id="categoria" name="categoria">
+                    <option value="filme">Filme</option>
+                    <option value="serie">Série</option>
+                    <option value="livro">Livro</option>
+                    <option value="jogo">Jogo</option>
+                </select>
+
+                <label for="mensagem">Sua crítica:</label>
+                <textarea id="mensagem" name="mensagem" rows="4" placeholder="Escreva sua opinião"></textarea>
+
+                <button type="submit">Enviar crítica</button>
+            </form>
+        </section>
+
+        <!-- ============================================================
+             SEÇÃO DE LINKS EXTERNOS
+             ============================================================ -->
+        <section id="referencias">
+            <h2>Referências e Repositório</h2>
+
+            <!-- FLEXBOX #17: lista de links distribuída com space-between -->
+            <ul class="links">
+                <li>
+                    <a href="https://github.com/NickPugles/Web_Design"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        Repositório de Web Design no GitHub
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/Igor-SJ/e-reviews"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        Repositório do grupo E-Reviews
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- Botão "voltar ao topo" com position: fixed no canto inferior direito -->
+    <a href="#inicio" class="voltar-topo" aria-label="Voltar ao topo da página">↑ Topo</a>
+
+    <!-- RODAPÉ: elementos de Box Model + FLEXBOX #18 nos links do rodapé -->
+    <footer class="rodape">
+        <p>&copy; 2026 E-Reviews - Todos os direitos reservados.</p>
+
+        <nav aria-label="Links do rodapé">
+            <a href="#introducao">Sobre</a>
+            <a href="#box-model">Box Model</a>
+            <a href="#flexbox">Flexbox</a>
+            <a href="#enviar">Contato</a>
+            <a href="#referencias">Referências</a>
+        </nav>
+    </footer>
+
+</body>
+
+</html>
