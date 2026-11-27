@@ -1,0 +1,1071 @@
+/* ============================================================
+   E-Reviews - Folha de estilos (Aula 7: CSS Box Model e Flexbox)
+
+   BOX MODEL (item 2): 20 elementos recebem valores explícitos de
+   content (width/height/área do texto), padding, border e margin:
+    1. body          6. .box-item       11. .featured-card   16. td
+    2. .topo         7. .flex-linha     12. .critica         17. form
+    3. .subtitulo    8. .flex-coluna-alta 13. .critica-texto 18. label
+    4. .menu-flex a  9. .flex-bloco     14. .nota            19. input/select/textarea
+    5. .breadcrumb li 10. .legendas li  15. th               20. button
+   (todos os elementos comentados regra por regra abaixo, marcados com "BOX:")
+
+   FLEXBOX (item 3): mais de 20 propriedades flex usadas:
+   display: flex (x8+), flex-direction row/column, justify-content
+   (flex-start, center, space-between, space-around, space-evenly),
+   align-items (stretch, flex-start, center, flex-end), flex-wrap,
+   gap e flex (grow/shrink/basis nos cartões "Em Cartaz").
+
+   ADICIONAIS: box-sizing, box-shadow, border-radius, transition,
+   transform, :hover, linear-gradient, letter-spacing, line-height,
+   opacity, cursor, z-index, text-decoration, outline/:focus-visible,
+   overflow, min-height, filter, text-transform, user-select e
+   media queries.
+   ============================================================ */
+
+/* Reset básico: margin/padding zero em tudo + box model previsível.
+   BOX: com border-box, width/height de todos os elementos passam a
+   INCLUIR padding e border (content encolhe em vez de estourar a caixa) */
+* {
+    margin: 0;              /* BOX: zera a margin padrão dos navegadores */
+    padding: 0;             /* BOX: zera o padding padrão */
+    box-sizing: border-box; /* BOX: content + padding + border = width */
+}
+
+/* ELEMENTO 1 — body
+   BOX: content = texto fluido; padding lateral interno; border-left
+   decorativa; margin zero (ocupa a janela inteira) */
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(180deg, #f5f7fb 0%, #e9eef6 100%);
+    color: #22303f;
+    line-height: 1.7;
+    min-height: 100vh;      /* content mínimo = altura da tela */
+    padding: 0 4px;         /* BOX: padding interno lateral do body */
+    border-left: 4px solid #12203a; /* BOX: border decorativa */
+    margin: 0;              /* BOX: sem espaçamento externo */
+}
+
+/* ---------- Cabeçalho (BOX + FLEXBOX) ---------- */
+/* ELEMENTO 2 — .topo
+   BOX: content (h1+h2+nav), padding 28/20, border-bottom dupla,
+   margin 0. position sticky + z-index fixam o menu no topo */
+.topo {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(135deg, #12203a, #274b73);
+    color: #ffffff;
+    text-align: center;
+    padding: 28px 20px;               /* BOX: espaço interno generoso */
+    border-bottom: 4px solid #f59e0b; /* BOX: moldura inferior destacada */
+    margin: 0;                        /* BOX: encosta nas bordas da tela */
+    box-shadow: 0 4px 16px rgba(18, 32, 58, 0.35);
+}
+
+.topo h1 {
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+}
+
+/* ELEMENTO 3 — .subtitulo
+   BOX: content em linha própria, padding-top pequeno, border
+   transparente (ocupa espaço zero mas declara o valor) e margin
+   inferior separando do menu */
+.subtitulo {
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: #dbe7f5;
+    padding: 4px 0 0;                 /* BOX: só respiro acima do texto */
+    border: 0 solid transparent;      /* BOX: border declarada sem espessura */
+    margin: 6px 0 0;                  /* BOX: afasta o subtítulo do menu */
+}
+
+/* FLEXBOX #1 — .menu-flex: container flex em linha, centralizado,
+   com quebra no mobile e gap no lugar de margens */
+.menu-flex {
+    list-style: none;
+    display: flex;              /* FLEX: vira container flexbox */
+    justify-content: center;    /* FLEX: itens agrupados no centro */
+    flex-wrap: wrap;            /* FLEX: quebra de linha no mobile */
+    gap: 12px;                  /* FLEX: espaço exato entre itens */
+    margin-top: 16px;           /* BOX: margin separa o menu do título */
+}
+
+/* ELEMENTO 4 — links do menu
+   BOX: content = texto, padding 6/16 cria o "pill", border 1px
+   clara e margin 0 (o gap do container já espaça) */
+.topo nav a {
+    color: #dbe7f5;
+    text-decoration: none;
+    padding: 6px 16px;                        /* BOX: conteúdo respirando */
+    border: 1px solid rgba(255, 255, 255, 0.35); /* BOX: contorno pill */
+    border-radius: 999px;
+    margin: 0;                                /* BOX: gap faz o serviço */
+    font-size: 0.92rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.topo nav a:hover {
+    background-color: #ffffff;
+    color: #12203a;
+}
+
+/* ---------- Breadcrumb (FLEXBOX #2 + BOX) ---------- */
+.breadcrumb {
+    max-width: 1100px;
+    margin: 14px auto 0;    /* BOX: margin auto centraliza a caixa */
+    padding: 0 24px;        /* BOX: respiro lateral interno */
+    border: 0 solid transparent; /* BOX: border declarada (fina) */
+}
+
+.breadcrumb ol {
+    list-style: none;
+    display: flex;          /* FLEX: trilha em linha */
+    gap: 8px;               /* FLEX: separa "Início" de "E-Reviews" */
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+/* ELEMENTO 5 — .breadcrumb li
+   BOX: content do texto, padding 2px, border pontilhada discreta
+   e margin-right automático via gap do container */
+.breadcrumb li {
+    padding: 2px 6px;                   /* BOX: infla levemente o item */
+    border: 1px dotted transparent;     /* BOX: border reservada */
+    margin: 0;                          /* BOX: sem margem extra */
+}
+
+.breadcrumb a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+/* ---------- Conteúdo principal ---------- */
+main {
+    max-width: 1200px;
+    margin: 0 auto;     /* BOX: auto centraliza o container */
+    padding: 24px;      /* BOX: espaço interno do main */
+    border: 0 solid transparent; /* BOX: border declarada */
+}
+
+section {
+    margin-bottom: 34px; /* BOX: margin separa as seções */
+    padding: 0;          /* BOX: padding zero (herda do reset) */
+    border: 0 solid transparent; /* BOX: border declarada */
+    text-align: center;
+}
+
+section h2 {
+    color: #12203a;
+    font-size: 1.4rem;
+    padding-bottom: 8px;             /* BOX: padding abre espaço p/ linha */
+    margin-bottom: 16px;             /* BOX: margin afasta do conteúdo */
+    border-bottom: 2px solid #cbd5e1; /* BOX: border vira divisória */
+    max-width: 720px;                /* content limitado p/ legibilidade */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+section h3 {
+    color: #274b73;
+    margin: 12px 0 6px; /* BOX: margin vertical assimétrica */
+}
+
+/* ---------- Hero / apresentação ---------- */
+/* .hero é caixa com as 4 camadas clássicas */
+.hero {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px;                   /* BOX: padding interno largo */
+    border: 1px solid #e2e8f0;       /* BOX: moldura sutil */
+    margin: 0 0 10px;                /* BOX: empurra a próxima seção */
+    box-shadow: 0 2px 10px rgba(34, 48, 63, 0.08);
+}
+
+#introducao-texto {
+    font-size: 1.05rem;
+    color: #3b4a5a;
+}
+
+.dica {
+    background: #eff6ff;
+    padding: 10px 16px;                  /* BOX: padding do selo-dica */
+    border: 1px dashed #2563eb;          /* BOX: border tracejada didática */
+    border-radius: 8px;
+    margin: 18px auto 0;                 /* BOX: auto centraliza a caixa */
+    max-width: 640px;                    /* content limitado */
+    font-size: 0.92rem;
+}
+
+/* ============================================================
+   BOX MODEL NA PRÁTICA (item 2)
+   ============================================================ */
+/* FLEXBOX #3 — .box-demo: container dos 4 exemplos em linha com
+   wrap e espaçamento igual */
+.box-demo {
+    display: flex;                  /* FLEX: vira container */
+    flex-direction: row;            /* FLEX: eixo principal horizontal */
+    justify-content: center;        /* FLEX: agrupados no centro */
+    align-items: stretch;           /* FLEX: mesmas alturas */
+    flex-wrap: wrap;                /* FLEX: quebra no mobile */
+    gap: 20px;                      /* FLEX: distância entre caixas */
+    margin: 22px 0;                 /* BOX: margin separa dos textos */
+}
+
+/* ELEMENTO 6 — .box-item (base das 4 caixas)
+   BOX genérico: content 120×90 de área textual, padding, border e
+   margin depois sobrescritos camada por camada */
+.box-item {
+    background: #ffffff;
+    width: 210px;      /* BOX: content definido (border-box ajuda) */
+    min-height: 130px; /* BOX: altura mínima do conteúdo */
+    font-size: 0.85rem;
+    border-radius: 8px;
+}
+
+.box-item h3 {
+    margin: 0 0 4px; /* BOX: afasta título do parágrafo interno */
+    font-size: 0.95rem;
+    color: #12203a;
+}
+
+/* Caixa "Content": quase sem camadas — o foco é a área do texto */
+.box-content {
+    width: 120px;            /* BOX: content estreito de verdade */
+    height: 90px;            /* BOX: content baixo */
+    padding: 0;              /* BOX: zero padding */
+    border: 0 solid transparent; /* BOX: zero border */
+    margin: 0;               /* BOX: zero margin */
+    background: #dbeafe;
+    overflow: hidden;        /* content maior não vaza da caixa */
+}
+
+/* Caixa "Padding": border pontilhada mostra onde a borda chega */
+.box-padding {
+    padding: 24px;               /* BOX: padding grande empurra o texto */
+    border: 2px dotted #2563eb;  /* BOX: moldura pontilhada da border */
+    margin: 0;                   /* BOX: sem espaço externo extra */
+    background: #e0f2fe;
+}
+
+/* Caixa "Border": border espessa é a estrela */
+.box-border {
+    padding: 12px;                    /* BOX: padding pequeno */
+    border: 8px solid #f59e0b;        /* BOX: border grossa sólida */
+    margin: 0;                        /* BOX: sem margin extra */
+    background: #fef3c7;
+}
+
+/* Caixa "Margin": a moldura é a própria caixa; margin de 28px abre
+   um vazio visível ao redor dela dentro do container flex */
+.box-margin {
+    padding: 12px;          /* BOX: padding interno curto */
+    border: 2px dashed #dc2626; /* BOX: border tracejada p/ enxergar a caixa */
+    margin: 28px;           /* BOX: margin externa grande (o exemplo) */
+    background: #fee2e2;
+}
+
+/* ============================================================
+   FLEXBOX NA PRÁTICA (item 3)
+   ============================================================ */
+/* Container vertical da galeria de demos */
+.flex-galeria {
+    display: flex;          /* FLEX: empilha as linhas com column */
+    flex-direction: column; /* FLEX: cada demo em sua linha */
+    gap: 14px;              /* FLEX: distância entre demos */
+    margin: 18px auto;      /* BOX: auto centraliza o bloco */
+    max-width: 860px;
+}
+
+/* ELEMENTO 7 — .flex-linha: container de 3 itens que recebe cada
+   valor de justify-content nas classes abaixo */
+.flex-linha {
+    display: flex;              /* FLEX: vira container flexbox */
+    flex-direction: row;        /* FLEX: linha (valor padrão, explícito) */
+    align-items: center;        /* FLEX: itens verticalmente centrados */
+    background: #ffffff;
+    padding: 10px 14px;         /* BOX: content das spans respirando */
+    border: 1px solid #cbd5e1;  /* BOX: moldura da demo */
+    margin: 0;                  /* BOX: gap já espaça as demos */
+    border-radius: 8px;
+}
+
+/* Itens das demos: ELEMENTOS reutilizados como caixas de conteúdo */
+.flex-linha span,
+.flex-bloco span,
+.flex-coluna-alta span {
+    background: #2563eb;
+    color: #ffffff;
+    padding: 10px 18px;             /* BOX: padding do quadradinho */
+    border: 2px solid #1e40af;      /* BOX: border mais escura */
+    margin: 0;                      /* BOX: spacing vem do container */
+    border-radius: 6px;
+    font-weight: 600;
+    min-width: 40px;
+    text-align: center;
+}
+
+/* FLEXBOX #4: justify-content flex-start — encosta no início */
+.justify-start { justify-content: flex-start; }
+
+/* FLEXBOX #5: center — agrupa no meio */
+.justify-center { justify-content: center; }
+
+/* FLEXBOX #6: space-between — espaços só entre os itens */
+.justify-between { justify-content: space-between; }
+
+/* FLEXBOX #7: space-around — meio espaço em cada lado */
+.justify-around { justify-content: space-around; }
+
+/* FLEXBOX #8: space-evenly — espaços idênticos em tudo */
+.justify-evenly { justify-content: space-evenly; }
+
+/* ELEMENTO 8 — .flex-coluna-alta: caixas altas para ver align-items */
+.flex-coluna-alta {
+    display: flex;              /* FLEX: container */
+    height: 90px;               /* BOX: altura do content (eixo cruzado) */
+    background: #ffffff;
+    padding: 8px;               /* BOX: padding interno */
+    border: 1px solid #cbd5e1;  /* BOX: border */
+    margin: 0;                  /* BOX: sem margin extra */
+    border-radius: 8px;
+}
+
+/* FLEXBOX #9-11: os três valores de align-items nas demos verticais */
+.align-start  { align-items: flex-start; } /* topo do eixo cruzado */
+.align-center { align-items: center; }     /* meio do eixo cruzado */
+.align-end    { align-items: flex-end; }   /* base do eixo cruzado */
+
+/* ELEMENTO 9 — .flex-bloco: demo de flex-direction column */
+.flex-bloco {
+    display: flex;
+    flex-direction: column;        /* FLEX: empilha os itens em coluna */
+    justify-content: center;       /* FLEX: e agora o eixo principal é vertical */
+    gap: 6px;                      /* FLEX: distância vertical */
+    background: #ffffff;
+    padding: 12px;                 /* BOX: padding interno */
+    border: 1px solid #cbd5e1;     /* BOX: border */
+    margin: 0;                     /* BOX: margin zerada */
+    border-radius: 8px;
+}
+
+/* FLEXBOX #12: row explícito na demo comparativa */
+.dir-row {
+    flex-direction: row;
+}
+
+/* FLEXBOX #13: column já aplicado em .flex-bloco (acima) */
+.dir-column {
+    flex-direction: column;
+}
+
+/* ELEMENTO 10 — .legendas li: lista de explicações com camadas */
+.legendas {
+    display: inline-block;
+    text-align: left;
+    margin: 6px auto;          /* BOX: auto centraliza a lista */
+    padding: 10px 18px;        /* BOX: espaço interno da caixa */
+    border: 1px solid #e2e8f0; /* BOX: moldura discreta */
+    background: #f8fafc;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.legendas li {
+    margin-bottom: 4px; /* BOX: afasta cada explicação */
+    padding: 0;         /* BOX: sem padding (content colado) */
+    border: 0 solid transparent; /* BOX: border declarada */
+}
+
+/* ---------- Em Cartaz (FLEXBOX #14, herdado da Aula 6) ---------- */
+.featured {
+    display: flex;                    /* FLEX: cartões lado a lado */
+    justify-content: space-between;   /* FLEX: distribui no espaço livre */
+    align-items: stretch;             /* FLEX: alturas iguais */
+    flex-wrap: wrap;                  /* FLEX: quebra no mobile */
+    gap: 16px;                        /* FLEX: espaçamento entre cards */
+}
+
+/* ELEMENTO 11 — .featured-card
+   BOX: flex 1 1 150px define o content, padding 18/12, border 1px,
+   margin 0. FLEX: cresce/reduz dentro do container .featured */
+.featured-card {
+    flex: 1 1 150px;            /* FLEX: grow 1, shrink 1, base 150px */
+    background: #ffffff;
+    border: 1px solid #e2e8f0;  /* BOX: moldura do cartão */
+    border-radius: 12px;
+    padding: 18px 12px;         /* BOX: espaço interno */
+    margin: 0;                  /* BOX: gap faz a distância */
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(34, 48, 63, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.featured-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(34, 48, 63, 0.18);
+}
+
+.featured-card h3 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.featured-card p {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #12203a;
+}
+
+/* ---------- Cartões de crítica ---------- */
+.critica-img {
+    position: relative;      /* referência para o selo absoluto */
+    display: inline-block;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #dc2626;
+    color: #ffffff;
+    font-size: 0.75rem;
+    padding: 3px 10px;       /* BOX: padding do selo */
+    border: 1px solid #991b1b; /* BOX: border mais escura no selo */
+    border-radius: 999px;
+    margin: 0;               /* BOX: ancorado por top/right */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    user-select: none;
+}
+
+/* ELEMENTO 12 — .critica: caixa da imagem
+   BOX: content 460px máximos, padding 16, border 1px, margin auto */
+.critica {
+    background: #ffffff;
+    border: 1px solid #e2e8f0; /* BOX: moldura do cartão */
+    border-radius: 12px;
+    padding: 16px;             /* BOX: espaço interno entre foto e moldura */
+    max-width: 460px;          /* BOX: largura do content limitada */
+    margin: 0 auto;            /* BOX: auto centraliza a caixa */
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(34, 48, 63, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.critica:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(34, 48, 63, 0.15);
+}
+
+/* ELEMENTO 13 — .critica-texto: caixa do texto
+   BOX: content 680px, padding 16/24, border 1px, margin 12 auto */
+.critica-texto {
+    background: #ffffff;
+    border: 1px solid #e2e8f0; /* BOX: mesma moldura dos cartões */
+    border-radius: 12px;
+    padding: 16px 24px;        /* BOX: padding maior nas laterais */
+    max-width: 680px;          /* BOX: content mais largo que a foto */
+    margin: 12px auto 0;       /* BOX: 12px de ar acima, auto centraliza */
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(34, 48, 63, 0.08);
+}
+
+.critica-texto p {
+    max-width: 620px;      /* BOX: content restrito p/ leitura */
+    margin: 0 auto 8px;    /* BOX: afasta parágrafos */
+    padding: 0;            /* BOX: sem padding (texto colado) */
+    border: 0 solid transparent; /* BOX: border declarada */
+}
+
+.critica img {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto; /* BOX: centraliza a imagem no cartão */
+}
+
+/* ELEMENTO 14 — .nota: pill amarelo com as 4 camadas */
+.nota {
+    display: inline-block;
+    background: #fef9c3;
+    border: 1px solid #fde68a; /* BOX: border tom sobre tom */
+    color: #854d0e;
+    font-weight: 600;
+    padding: 2px 10px;         /* BOX: padding de pill */
+    border-radius: 6px;
+    margin: 6px 0;             /* BOX: afasta de título e texto */
+}
+
+/* ---------- Mídias (FLEXBOX #15: coluna) ---------- */
+.midias {
+    display: flex;              /* FLEX: empilha vídeo e áudio */
+    flex-direction: column;     /* FLEX: eixo vertical */
+    align-items: center;        /* FLEX: centraliza no eixo cruzado */
+    gap: 16px;                  /* FLEX: ar entre as mídias */
+    margin-bottom: 18px;        /* BOX: separa do ranking abaixo */
+    padding: 0;                 /* BOX: container sem recheio */
+    border: 0 solid transparent;/* BOX: border declarada */
+}
+
+video {
+    width: 100%;
+    max-width: 640px;           /* BOX: content limitado */
+    display: block;
+    margin: 0 auto;             /* BOX: auto centraliza */
+    padding: 4px;               /* BOX: moldura interna p/ o player */
+    border: 1px solid #cbd5e1;  /* BOX: borda no vídeo */
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+audio {
+    width: 100%;
+    max-width: 520px;           /* BOX: content limitado */
+    display: block;
+    margin: 0 auto;             /* BOX: centralizado */
+    padding: 2px 6px;           /* BOX: respiro do player */
+    border: 1px solid #e2e8f0;  /* BOX: borda sutil */
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+/* ---------- Ranking (lista ordenada) ---------- */
+.ranking {
+    display: inline-block;
+    text-align: left;
+    margin: 0 auto;             /* BOX: centraliza a lista */
+    padding: 8px 22px;          /* BOX: espaço interno da caixa */
+    border: 1px solid #e2e8f0;  /* BOX: moldura da caixinha */
+    background: #ffffff;
+    border-radius: 8px;
+}
+
+.ranking li {
+    margin-bottom: 4px;         /* BOX: afasta cada jogo */
+    padding: 0;                 /* BOX: sem recheio interno */
+    border: 0 solid transparent; /* BOX: border declarada */
+}
+
+/* ---------- Tabela ---------- */
+table {
+    width: 100%;
+    max-width: 760px;       /* BOX: content máximo da tabela */
+    margin: 0 auto;         /* BOX: auto centraliza */
+    border-collapse: collapse; /* BOX: border unifica células */
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(34, 48, 63, 0.1);
+}
+
+caption {
+    caption-side: top;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #64748b;
+    padding: 8px 0;  /* BOX: padding do título da tabela */
+}
+
+/* ELEMENTOS 15 e 16 — th e td: a célula é o exemplo clássico de
+   Box Model (text = content, padding 10/14, border 1px, margin 0) */
+th, td {
+    border: 1px solid #e2e8f0; /* BOX: border de todas as células */
+    padding: 10px 14px;        /* BOX: padding igual em toda célula */
+    margin: 0;                 /* BOX: margin 0 (collapse nas células) */
+    text-align: center;
+}
+
+th {
+    background: #12203a;
+    color: #ffffff;
+}
+
+tbody tr:nth-child(even) {
+    background: #f1f5f9;
+}
+
+/* ---------- Formulário (FLEXBOX #16: coluna) ---------- */
+/* ELEMENTO 17 — form
+   BOX: content até 520px, padding 22, border 1px, margin auto.
+   FLEX: coluna com gap substituindo as margens dos campos */
+form {
+    background: #ffffff;
+    border: 1px solid #e2e8f0; /* BOX: moldura do cartão */
+    border-radius: 12px;
+    padding: 22px;             /* BOX: espaço interno do formulário */
+    max-width: 520px;          /* BOX: largura do content */
+    margin: 0 auto;            /* BOX: auto centraliza */
+    text-align: left;
+    display: flex;                 /* FLEX: container do formulário */
+    flex-direction: column;        /* FLEX: campos empilhados */
+    gap: 6px;                      /* FLEX: espaço entre label e input */
+    box-shadow: 0 2px 8px rgba(34, 48, 63, 0.08);
+}
+
+/* ELEMENTO 18 — label
+   BOX: content de texto curto, padding 0, border declarada,
+   margin superior cria o respiro entre campos */
+label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 6px;                 /* BOX: afasta o label do campo anterior */
+    padding: 0;                      /* BOX: sem recheio */
+    border: 0 solid transparent;     /* BOX: border declarada */
+}
+
+/* ELEMENTO 19 — input/select/textarea
+   BOX: content = valor digitado, padding 10, border 1px, margin 0 */
+input, select, textarea {
+    padding: 10px;               /* BOX: padding do campo */
+    border: 1px solid #cbd5e1;   /* BOX: border do campo */
+    border-radius: 8px;
+    margin: 0;                   /* BOX: gap do form espaça */
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* ELEMENTO 20 — button
+   BOX: content do rótulo, padding 12, border none declarada,
+   margin superior destaca o botão do restante do form */
+button {
+    margin-top: 14px;   /* BOX: empurra o botão para baixo */
+    padding: 12px;      /* BOX: botão alto e confortável */
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: #ffffff;
+    border: 2px solid transparent; /* BOX: border reservada (sem cor) */
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.2s, transform 0.1s;
+}
+
+button:hover {
+    filter: brightness(1.12);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* ---------- Links externos (FLEXBOX #17) ---------- */
+.links {
+    display: flex;                   /* FLEX: links lado a lado */
+    justify-content: space-between;  /* FLEX: nas pontas do container */
+    align-items: center;             /* FLEX: mesma linha vertical */
+    flex-wrap: wrap;                 /* FLEX: quebra no mobile */
+    gap: 12px;                       /* FLEX: respiro ao quebrar */
+    list-style: none;
+    max-width: 860px;                /* BOX: content da fileira */
+    margin: 0 auto;                  /* BOX: centraliza o par */
+    padding: 12px 18px;              /* BOX: espaço interno da faixa */
+    border: 1px solid #e2e8f0;       /* BOX: moldura da faixa */
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+a {
+    color: #2563eb;
+}
+
+a:hover {
+    color: #1e40af;
+    text-decoration: none;
+}
+
+/* ---------- Botão voltar ao topo ---------- */
+.voltar-topo {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 200;
+    display: inline-block;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 10px 16px;              /* BOX: padding do pill flutuante */
+    border: 1px solid #1e40af;       /* BOX: contorno do pill */
+    margin: 0;                       /* BOX: ancorado por bottom/right */
+    border-radius: 999px;
+    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.4);
+    opacity: 0;                      /* JS (func. 9): some até rolar 400px */
+    pointer-events: none;            /* não clicável enquanto invisível */
+    cursor: pointer;
+    transition: opacity 0.25s, transform 0.25s;
+}
+
+/* JS adiciona .mostrar quando window.scrollY > 400 */
+.voltar-topo.mostrar {
+    opacity: 0.9;
+    pointer-events: auto;
+}
+
+.voltar-topo:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+}
+
+/* ---------- Rodapé (FLEXBOX #18) ---------- */
+.rodape {
+    background: linear-gradient(135deg, #12203a, #274b73);
+    color: #dbe7f5;
+    text-align: center;
+    padding: 22px;                     /* BOX: espaço interno do rodapé */
+    border-top: 4px solid #f59e0b;     /* BOX: divisória superior */
+    margin-top: 20px;                  /* BOX: afasta do main */
+}
+
+.rodape nav {
+    margin-top: 10px;      /* BOX: separa o menu do copyright */
+    display: flex;         /* FLEX: links em linha */
+    justify-content: center; /* FLEX: centraliza o grupo */
+    gap: 18px;             /* FLEX: distância entre links */
+}
+
+.rodape a {
+    color: #dbe7f5;
+    text-decoration: none;
+    padding: 2px 6px;                  /* BOX: área de clique maior */
+    border: 1px solid transparent;      /* BOX: border reservada */
+    margin: 0;                          /* BOX: gap espaça */
+}
+
+.rodape a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Acessibilidade: foco visível ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid #f59e0b;
+    outline-offset: 2px;
+}
+
+/* ---------- Responsividade (media queries) ---------- */
+@media (max-width: 720px) {
+    /* No mobile os itens flex das demos apertam: reduz o gap */
+    .flex-linha {
+        gap: 6px; /* FLEX: espaço menor entre caixinhas */
+    }
+
+    .justify-between,
+    .justify-around,
+    .justify-evenly {
+        justify-content: center; /* FLEX: centraliza p/ caber na tela */
+    }
+}
+
+@media (max-width: 600px) {
+    .topo h1 {
+        font-size: 1.6rem;
+    }
+
+    main {
+        padding: 16px; /* BOX: menos espaço interno no mobile */
+    }
+
+    .critica {
+        max-width: 100%; /* BOX: cartão ocupa a tela toda */
+    }
+
+    /* FLEX: as caixas do Box Model viram coluna no mobile */
+    .box-demo {
+        flex-direction: column;   /* FLEX: empilha os 4 exemplos */
+        align-items: center;      /* FLEX: centraliza na vertical */
+    }
+
+    .links {
+        flex-direction: column; /* FLEX: links um abaixo do outro */
+        align-items: center;    /* FLEX: centraliza cada link */
+    }
+}
+
+/* ============================================================
+   AULA 8 — estilos das funcionalidades JavaScript
+   ============================================================ */
+
+/* Classe que o JS alterna nos elementos filtrados/buscados */
+.oculto {
+    display: none; /* esconde a seção inteira do layout */
+}
+
+/* BOTÃO DE TEMA (funcionalidade 1): canto superior direito do header */
+#btn-tema {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    margin: 0;            /* BOX: fora do fluxo do formulário */
+    padding: 6px 14px;    /* BOX: pill compacto */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* BOX: contorno claro */
+    background: rgba(255, 255, 255, 0.12);
+    font-size: 0.8rem;
+}
+
+.topo {
+    position: sticky; /* já declarado; garante contexto pro absolute do botão */
+}
+
+/* ---------- Barra de ferramentas (funcionalidades 2-4) ---------- */
+.ferramentas {
+    background: #ffffff;
+    padding: 20px;                /* BOX: caixa fofa de controles */
+    border: 1px solid #e2e8f0;    /* BOX: moldura do cartão */
+    border-radius: 12px;
+    margin: 0 auto 10px;          /* BOX: auto centraliza o cartão */
+    max-width: 760px;             /* BOX: largura do content */
+    box-shadow: 0 2px 8px rgba(34, 48, 63, 0.08);
+}
+
+#busca {
+    max-width: 420px;             /* BOX: campo de busca centrado */
+    margin: 10px auto 4px;        /* BOX: afasta do título e dos botões */
+    display: block;
+}
+
+/* FLEX: fileira de botões de filtro centralizada */
+.filtros {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+/* Estado normal dos botões de filtro (e das demos) */
+.filtro-btn,
+.demo-btn {
+    padding: 8px 16px;            /* BOX: pill clicável */
+    border: 1px solid #cbd5e1;    /* BOX: contorno neutro */
+    border-radius: 999px;
+    background: #f8fafc;
+    color: #22303f;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin: 0;                    /* BOX: gap espaça a fileira */
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, transform 0.15s;
+}
+
+.filtro-btn:hover,
+.demo-btn:hover {
+    transform: translateY(-2px);
+    border-color: #2563eb;
+}
+
+/* JS marca com .ativo o filtro escolhido no momento */
+.filtro-btn.ativo {
+    background: #2563eb;
+    border-color: #1e40af;
+    color: #ffffff;
+}
+
+.contador {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-top: 12px; /* BOX: respiro abaixo dos botões */
+}
+
+/* ---------- Console da Aula (funcionalidade 5) ---------- */
+.console-aula {
+    background: #ffffff;
+    padding: 22px;                 /* BOX: cartão das demos */
+    border: 1px solid #e2e8f0;     /* BOX: moldura */
+    border-radius: 12px;
+    margin: 0 auto 10px;           /* BOX: centraliza o cartão */
+    max-width: 860px;              /* BOX: largura do content */
+    box-shadow: 0 2px 8px rgba(34, 48, 63, 0.08);
+}
+
+.console-botoes {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 14px 0; /* BOX: separa botões da saída */
+}
+
+/* A <pre> imita um console de desenvolvedor (fonte monoespaçada) */
+#saida-console {
+    background: #0f172a;
+    color: #a7f3d0;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.85rem;
+    text-align: left;
+    padding: 16px;                 /* BOX: espaço interno do console */
+    border: 1px solid #334155;     /* BOX: moldura do painel */
+    border-radius: 10px;
+    margin: 0 auto;                /* BOX: centraliza o painel */
+    max-width: 720px;              /* BOX: largura do content */
+    min-height: 120px;             /* BOX: altura mínima estável */
+    overflow-x: auto;              /* linhas longas ganham scroll */
+}
+
+/* ---------- Estatísticas (funcionalidade 6) ---------- */
+/* FLEX: três cartões de estatística lado a lado */
+.estatisticas {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 20px; /* BOX: ar antes da tabela */
+}
+
+.stat-card {
+    background: #ffffff;
+    padding: 14px 22px;            /* BOX: conteúdo respirando */
+    border: 1px solid #e2e8f0;     /* BOX: moldura */
+    border-radius: 10px;
+    margin: 0;                     /* BOX: gap cuida da distância */
+    min-width: 160px;              /* BOX: largura mínima do content */
+    box-shadow: 0 2px 8px rgba(34, 48, 63, 0.08);
+}
+
+.stat-card h3 {
+    margin: 0; /* BOX: título colado no número */
+}
+
+/* ---------- Tabela ordenável (funcionalidade 7) ---------- */
+.ordenar {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4); /* BOX: contorno no th escuro */
+    border-radius: 6px;
+    color: #ffffff;
+    padding: 2px 10px;            /* BOX: botão compacto */
+    margin: 0;                    /* BOX: centralizado no th */
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.ordenar:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ---------- Críticas da comunidade (funcionalidade 8) ---------- */
+.lista-usuario {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 680px;            /* BOX: mesma largura dos textos */
+    margin: 0 auto;              /* BOX: centraliza a lista */
+    padding: 0;                  /* BOX: sem recheio na ul */
+    border: 0 solid transparent; /* BOX: border declarada */
+}
+
+/* Item criado pelo JS com createElement + classe dinâmica */
+.critica-usuario {
+    background: #f0fdf4;
+    border: 1px solid #86efac;  /* BOX: moldura verde de "novo" */
+    border-radius: 10px;
+    padding: 12px 16px;         /* BOX: espaço interno do cartão */
+    margin: 0;                  /* BOX: gap espaça os itens */
+    text-align: left;
+    font-size: 0.92rem;
+}
+
+.critica-usuario p {
+    margin-top: 6px; /* BOX: afasta o texto do resumo */
+    color: #3b4a5a;
+}
+
+.aviso-vazio {
+    color: #64748b;
+    font-size: 0.9rem;
+    padding: 8px;               /* BOX: aviso arejado */
+    border: 1px dashed #cbd5e1; /* BOX: borda tracejada de "vazio" */
+    border-radius: 8px;
+    margin: 0;                  /* BOX: controlado pela ul */
+}
+
+.data-hoje {
+    font-size: 0.85rem;
+    color: #93b4d6;
+    margin-top: 6px; /* BOX: afasta o texto da data do copyright */
+}
+
+/* ---------- Tema escuro (funcionalidade 1) ---------- */
+/* O JS adiciona .tema-escuro no body; aqui as cores invertem */
+body.tema-escuro {
+    background: linear-gradient(180deg, #0b1220 0%, #131c2e 100%);
+    color: #dbe7f5;
+}
+
+body.tema-escuro .hero,
+body.tema-escuro .ferramentas,
+body.tema-escuro .console-aula,
+body.tema-escuro .featured-card,
+body.tema-escuro .critica,
+body.tema-escuro .critica-texto,
+body.tema-escuro .stat-card,
+body.tema-escuro form,
+body.tema-escuro .links,
+body.tema-escuro table,
+body.tema-escuro audio,
+body.tema-escuro .ranking,
+body.tema-escuro .legendas,
+body.tema-escuro .dica {
+    background: #1b2740;
+    color: #dbe7f5;
+    border-color: #2f3f5c;
+}
+
+body.tema-escuro section h2,
+body.tema-escuro .stat-card h3 {
+    color: #ffffff;
+}
+
+body.tema-escuro section h3,
+body.tema-escuro .featured-card p,
+body.tema-escuro .critica-texto p {
+    color: #c9d8ea;
+}
+
+body.tema-escuro .filtro-btn,
+body.tema-escuro .demo-btn {
+    background: #22304a;
+    color: #dbe7f5;
+    border-color: #3b4f70;
+}
+
+body.tema-escuro .filtro-btn.ativo {
+    background: #2563eb;
+    border-color: #60a5fa;
+    color: #ffffff;
+}
+
+body.tema-escuro th {
+    background: #0f1a2e;
+}
+
+body.tema-escuro tbody tr:nth-child(even) {
+    background: #22304a;
+}
+
+body.tema-escuro .nota {
+    background: #423a17;
+    border-color: #854d0e;
+    color: #fde68a;
+}
+
+body.tema-escuro .critica-usuario {
+    background: #14321f;
+    border-color: #2f6b45;
+}
