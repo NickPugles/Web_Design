@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!-- Declara que este documento usa HTML5 e define o idioma da página -->
+<html lang="pt-BR">
+
+<head>
+    <!-- Configurações iniciais da página -->
+    <meta charset="UTF-8"> <!-- Permite acentos e caracteres especiais -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Adapta a página a telas de celular -->
+
+    <!-- Título exibido na aba do navegador -->
+    <title>Aula 04 - Mídias em HTML</title>
+
+    <!-- Conexão com o arquivo de estilos -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- 1. CABEÇALHO: título da página e menu de navegação -->
+    <header>
+        <h1>Aula 04 - Mídias em HTML</h1>
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#imagens">Imagens</a>
+            <a href="#formulario">Formulário</a>
+            <a href="#classes">Identificadores e Classes</a>
+        </nav>
+    </header>
+
+    <!-- 2. CONTEÚDO PRINCIPAL: grade com os blocos de exemplo -->
+    <main class="grade" id="inicio">
+
+        <!-- Célula 1: Imagens -->
+        <section class="celula" id="imagens">
+            <h2>Imagens</h2>
+            <!-- Três imagens com src, alt, width e height, todas no mesmo tamanho -->
+            <figure class="galeria">
+                <img src="imagens/paisagem-natural-png.webp"
+                     alt="Paisagem natural"
+                     width="200" height="140">
+                <figcaption>Paisagem natural</figcaption>
+            </figure>
+            <figure class="galeria">
+                <img src="imagens/praia.webp"
+                     alt="Praia"
+                     width="200" height="140">
+                <figcaption>Praia</figcaption>
+            </figure>
+            <figure class="galeria">
+                <img src="imagens/cidade.webp"
+                     alt="Cidade"
+                     width="200" height="140">
+                <figcaption>Cidade</figcaption>
+            </figure>
+        </section>
+
+        <!-- Célula 2: Vídeo -->
+        <section class="celula">
+            <h2>Vídeo</h2>
+            <!-- Vídeo com controles, largura e imagem de capa (poster).
+                 Sem o atributo "controls" o vídeo fica sem barra de play/pause. -->
+            <video controls width="320" poster="imagens/capa_do_video.jpeg">
+                <source src="video/video.mp4" type="video/mp4">
+                Seu navegador não suporta vídeo.
+            </video>
+        </section>
+
+        <!-- Célula 3: Áudio -->
+        <section class="celula">
+            <h2>Áudio</h2>
+            <!-- Áudio com controles e duas fontes (.mp3 e .ogg).
+                 O navegador escolhe o primeiro formato que suportar. -->
+            <audio controls>
+                <source src="audio/musica.mp3" type="audio/mpeg">
+                <source src="audio/musica.ogg" type="audio/ogg">
+                Seu navegador não suporta áudio.
+            </audio>
+        </section>
+
+        <!-- Célula 4: Formulário -->
+        <section class="celula" id="formulario">
+            <h2>Formulário</h2>
+            <!-- Formulário de contato com campos obrigatórios -->
+            <form>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="voce@exemplo.com" required>
+
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="mensagem" rows="4" placeholder="Escreva sua mensagem"></textarea>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+
+        <!-- Célula 5: Links -->
+        <section class="celula">
+            <h2>Links</h2>
+            <!-- Link simples para o Google -->
+            <p><a href="https://www.google.com">Acesse o Google</a></p>
+            <!-- Link que abre em nova aba (target="_blank") -->
+            <p><a href="https://www.wikipedia.org" target="_blank" rel="noopener noreferrer">Wikipédia em nova aba</a></p>
+            <!-- Link com imagem clicável -->
+            <a href="https://www.google.com" title="Google">
+                <img src="imagens/cidade.webp" alt="Cidade (link com imagem)" width="200" height="140">
+            </a>
+        </section>
+
+        <!-- Célula 6: Listas -->
+        <section class="celula">
+            <h2>Listas</h2>
+            <!-- Lista ordenada com 3 passos -->
+            <ol>
+                <li>Passo 1</li>
+                <li>Passo 2</li>
+                <li>Passo 3</li>
+            </ol>
+            <!-- Lista não ordenada com 3 itens -->
+            <ul>
+                <li>Item A</li>
+                <li>Item B</li>
+                <li>Item C</li>
+            </ul>
+        </section>
+
+        <!-- Célula 7: Tabelas -->
+        <section class="celula">
+            <h2>Tabelas</h2>
+            <!-- Tabela com thead (cabeçalho) e tbody (dados), 3 colunas e 3 linhas -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Coluna 1</th>
+                        <th>Coluna 2</th>
+                        <th>Coluna 3</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Linha 1</td>
+                        <td>Dado 1</td>
+                        <td>Dado 2</td>
+                    </tr>
+                    <tr>
+                        <td>Linha 2</td>
+                        <td>Dado 3</td>
+                        <td>Dado 4</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Célula 8: Identificadores e Classes -->
+        <section class="celula" id="classes">
+            <h2>Identificadores e Classes</h2>
+            <!-- Parágrafo com id (único na página) -->
+            <p id="introducao">Parágrafo com id.</p>
+            <!-- Dois parágrafos com a mesma classe, estilizados com fundo amarelo claro -->
+            <p class="destaque">Parágrafo com classe "destaque".</p>
+            <p class="destaque">Segundo parágrafo com classe "destaque".</p>
+            <!-- Div como contêiner: agrupa um subtítulo e dois parágrafos -->
+            <div class="caixa">
+                <h3>Div Contêiner</h3>
+                <p>Primeiro parágrafo dentro do contêiner.</p>
+                <p>Parágrafo dentro do contêiner.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 3. RODAPÉ: encerra a página com o crédito -->
+    <footer>
+        <p>&copy; Exemplo didático de HTML</p>
+    </footer>
+
+</body>
+
+</html>
