@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<!-- Declara o documento como HTML5 e define o idioma pt-BR.
+     SEO: o atributo lang ajuda buscadores e leitores de tela a entender o idioma. -->
+<html lang="pt-BR">
+
+<head>
+    <!-- charset: garante que acentos e caracteres especiais sejam lidos corretamente -->
+    <meta charset="UTF-8">
+
+    <!-- viewport: essencial para responsividade, fator de ranqueamento no Google -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO: título único e descritivo, com a palavra-chave principal no início (~60 caracteres) -->
+    <title>E-Reviews | Críticas de Filmes, Séries, Livros e Jogos</title>
+
+    <!-- SEO: meta description clara com até ~155 caracteres, usada como resumo nos resultados -->
+    <meta name="description" content="E-Reviews: opiniões, artigos e críticas honestas sobre filmes, séries, livros e jogos. Descubra o que vale sua atenção.">
+
+    <!-- SEO: palavras-chave relacionadas ao conteúdo (uso moderado, sem exagero) -->
+    <meta name="keywords" content="críticas, reviews, filmes, séries, livros, jogos, entretenimento">
+
+    <!-- SEO: autor da página -->
+    <meta name="author" content="Grupo E - E-Reviews">
+
+    <!-- SEO: permite a indexação por padrão (evita bloquear conteúdo principal) -->
+    <meta name="robots" content="index, follow">
+
+    <!-- SEO: tag canonical aponta a URL principal, evitando penalização por conteúdo duplicado -->
+    <link rel="canonical" href="https://e-reviews.vercel.app/">
+
+    <!-- Open Graph: melhora a pré-visualização quando a página é compartilhada em redes sociais -->
+    <meta property="og:title" content="E-Reviews | Críticas de Filmes, Séries, Livros e Jogos">
+    <meta property="og:description" content="Opiniões, artigos e críticas honestas sobre filmes, séries, livros e jogos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://e-reviews.vercel.app/">
+    <meta property="og:image" content="imagens/capa_do_video.jpeg">
+    <meta property="og:locale" content="pt_BR">
+
+    <!-- Favicon: reforça a identidade visual e pode aumentar a taxa de cliques (CTR) -->
+    <link rel="icon" href="imagens/capa_do_video.jpeg" type="image/jpeg">
+
+    <!-- Conexão com a folha de estilos externa (separa estrutura de apresentação) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- CABEÇALHO: contém o único H1 da página (título principal) e a navegação.
+         CSS: recebe position: sticky com top: 0, fixando o menu no topo ao rolar. -->
+    <header class="topo" id="inicio">
+        <!-- SEO: apenas UM h1 por página, descrevendo o assunto principal -->
+        <h1>E-Reviews</h1>
+
+        <!-- SEO: links de navegação descritivos (sem "clique aqui"), ajudando a entender o destino -->
+        <nav aria-label="Navegação principal">
+            <ul>
+                <li><a href="#filmes">Críticas de Filmes</a></li>
+                <li><a href="#series">Séries</a></li>
+                <li><a href="#livros">Livros</a></li>
+                <li><a href="#jogos">Jogos</a></li>
+                <li><a href="#enviar">Envie sua Crítica</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- SEO: breadcrumb em lista ordenada indica a hierarquia do site para usuários e robôs -->
+    <nav class="breadcrumb" aria-label="Trilha de navegação">
+        <ol>
+            <li><a href="index.html">Início</a></li>
+            <li>E-Reviews</li>
+        </ol>
+    </nav>
+
+    <!-- CONTEÚDO PRINCIPAL: tag semântica <main> delimita o corpo da página -->
+    <main>
+
+        <!-- SEÇÃO DE APRESENTAÇÃO -->
+        <section class="hero" id="introducao">
+            <!-- SEO: subtítulo hierárquico (h2) organiza o conteúdo em níveis lógicos -->
+            <h2>Bem-vindo ao E-Reviews</h2>
+
+            <!-- Parágrafo introdutório com id para estilização e ancoragem -->
+            <p id="introducao-texto">
+                O E-Reviews é um espaço dedicado a opiniões, artigos e críticas
+                honestas sobre diferentes tipos de mídia: filmes, séries, livros
+                e jogos. Nosso objetivo é ajudar você a descobrir o que realmente
+                vale a sua atenção, de maneira simples e divertida.
+            </p>
+
+            <!-- Conteúdo textual adicional: buscadores valorizam páginas com bastante
+                 conteúdo relevante e único, o que melhora o posicionamento orgânico -->
+            <p>
+                Aqui você encontra análises escritas com calma, sem spoilers
+                desnecessários e sempre com uma nota final que resume nossa
+                impressão geral. Cada crítica leva em conta roteiro, atuação,
+                direção, trilha sonora e o quanto a obra consegue prender o
+                público do começo ao fim. Também conversamos com a comunidade:
+                você pode enviar a sua própria crítica pelo formulário no final
+                da página e participar das nossas discussões semanais.
+            </p>
+        </section>
+
+        <!-- NOVA SEÇÃO (Aula 6): "Em cartaz" usa display: flex para dispor os
+             cartões lado a lado. O container distribui o espaço com
+             justify-content e alinha as alturas com align-items -->
+        <section id="em-cartaz">
+            <h2>Em Cartaz</h2>
+
+            <div class="featured">
+                <div class="featured-card">
+                    <h3>Filme</h3>
+                    <p>Jogos Vorazes</p>
+                </div>
+                <div class="featured-card">
+                    <h3>Série</h3>
+                    <p>Shadowhunters</p>
+                </div>
+                <div class="featured-card">
+                    <h3>Livro</h3>
+                    <p>Flores para Algernon</p>
+                </div>
+                <div class="featured-card">
+                    <h3>Jogo</h3>
+                    <p>Aventura Épica</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DE FILMES: usa <article> por ser conteúdo independente e autônomo -->
+        <section id="filmes">
+            <h2>Críticas de Filmes</h2>
+
+            <!-- SEO: cada imagem tem alt descritivo, width e height definidos
+                 para acessibilidade e estabilidade do layout (evita deslocamento) -->
+            <!-- Primeiro article: apenas a imagem da crítica.
+                 A div .critica-img usa position: relative como referência
+                 para o selo .badge, que fica position: absolute sobre a foto -->
+            <article class="critica">
+                <div class="critica-img">
+                    <img src="imagens/filme-jogos_vorazes.webp"
+                         alt="Cena do filme Jogos Vorazes, distopia de aventura e sobrevivência"
+                         width="300" height="200" loading="lazy">
+                    <span class="badge">Em alta</span>
+                </div>
+            </article>
+
+            <!-- Segundo article: texto da crítica logo abaixo da imagem -->
+            <article class="critica-texto">
+                <h3>Jogos Vorazes</h3>
+                <p class="nota">Nota: 8.5 / 10</p>
+                <p>
+                    Uma distopia visualmente impactante que prende do início ao fim,
+                    com uma protagonista forte e cenas de ação bem coreografadas.
+                </p>
+                <p>
+                    O filme equilibra entretenimento e crítica social: a arena é
+                    ao mesmo tempo espetáculo dentro da história e reflexão sobre
+                    quem consome esse espetáculo. A fotografia aproveita cenários
+                    reais para criar grandiosidade, e o ritmo alterna tensão e
+                    pausas que dão profundidade aos personagens. É ótima escolha
+                    para quem gosta de histórias de superação com alto risco.
+                </p>
+            </article>
+        </section>
+
+        <!-- SEÇÃO DE SÉRIES -->
+        <section id="series">
+            <h2>Críticas de Séries</h2>
+
+            <!-- Primeiro article: apenas a imagem da crítica -->
+            <article class="critica">
+                <img src="imagens/serie-shadowhunters.webp"
+                     alt="Elenco de Shadowhunters em cena de fantasia urbana"
+                     width="300" height="200" loading="lazy">
+            </article>
+
+            <!-- Segundo article: texto da crítica logo abaixo da imagem -->
+            <article class="critica-texto">
+                <h3>Shadowhunters</h3>
+                <p class="nota">Nota: 7.8 / 10</p>
+                <p>
+                    Uma série de fantasia urbana envolvente, perfeita para maratonar,
+                    com personagens cativantes e reviravoltas bem construídas.
+                </p>
+                <p>
+                    Os episódios curtos ajudam a manter o ritmo, e a química entre
+                    o elenco é o grande trunfo da produção. Embora alguns arcos
+                    secundários se estendam mais do que o necessário, o mundo de
+                    caçadores de sombras é criativo e a mitologia prende o público.
+                    Resultado divertido e recompensador para quem gosta de fantasia.
+                </p>
+            </article>
+        </section>
+
+        <!-- SEÇÃO DE LIVROS -->
+        <section id="livros">
+            <h2>Críticas de Livros</h2>
+
+            <!-- Primeiro article: apenas a imagem da crítica -->
+            <article class="critica">
+                <img src="imagens/livro-flores_algernon.webp"
+                     alt="Capa do livro Flores para Algernon, romance de ficção científica"
+                     width="300" height="200" loading="lazy">
+            </article>
+
+            <!-- Segundo article: texto da crítica logo abaixo da imagem -->
+            <article class="critica-texto">
+                <h3>Flores para Algernon</h3>
+                <p class="nota">Nota: 9.0 / 10</p>
+                <p>
+                    Uma leitura envolvente que mistura ficção científica e emoção,
+                    com uma narrativa ágil e memorável.
+                </p>
+                <p>
+                    Contado em relatórios, o livro acompanha Charlie, cujo
+                    inteligência artificialmente elevada o faz enxergar o mundo e as
+                    pessoas ao seu redor de forma nova. O autor equilibra mistério
+                    científico e reflexões sobre inteligência, ética e empatia sem
+                    nunca ficar pesado. É o tipo de leitura que faz o leitor repensar
+                    o próprio cotidiano muito depois da última página.
+                </p>
+            </article>
+        </section>
+
+        <!-- SEÇÃO DE JOGOS: inclui vídeo, áudio e lista, reaproveitando recursos de aulas anteriores -->
+        <section id="jogos">
+            <h2>Crítica em Vídeo</h2>
+
+            <!-- Texto que contextualiza a mídia para os buscadores (robôs não assistem ao vídeo) -->
+            <p>
+                Assista abaixo à nossa videoanálise completa, onde discutimos
+                jogabilidade, gráficos, durabilidade da campanha e o custo-benefício
+                dos principais lançamentos do mês. A narração traz exemplos práticos
+                de partidas reais para que você entenda o ritmo de cada título antes
+                de decidir a compra.
+            </p>
+
+            <!-- Mídia: vídeo com controls, largura e poster (imagem de capa) -->
+            <video controls width="320" poster="imagens/capa_do_video.jpeg">
+                <source src="video/video.mp4" type="video/mp4">
+                Seu navegador não suporta vídeo.
+            </video>
+
+            <h2>Trilha Sonora</h2>
+
+            <p>
+                Também selecionamos uma faixa de destaque para ouvir enquanto lê:
+                um trecho da trilha que ajuda a ilustrar o clima sonoro que estamos
+                avaliando nas nossas notas de áudio e música de jogos.
+            </p>
+
+            <!-- Mídia: áudio com duas fontes para compatibilidade entre navegadores -->
+            <audio controls>
+                <source src="audio/musica.mp3" type="audio/mpeg">
+                <source src="audio/musica.ogg" type="audio/ogg">
+                Seu navegador não suporta áudio.
+            </audio>
+
+            <!-- SEO: lista ordenada com os melhores jogos (conteúdo escaneável) -->
+            <h3>Top 5 Jogos do Mês</h3>
+            <ol class="ranking">
+                <li>Aventura Épica</li>
+                <li>Corrida Noturna</li>
+                <li>RPG dos Reinos</li>
+                <li>Estratégia Espacial</li>
+                <li>Plataforma Colorida</li>
+            </ol>
+        </section>
+
+        <!-- SEÇÃO DE TABELA: organiza dados de forma acessível -->
+        <section id="ranking-geral">
+            <h2>Resumo das Notas</h2>
+
+            <table>
+                <caption>Médias das críticas por categoria</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Título</th>
+                        <th scope="col">Nota</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Filme</td>
+                        <td>Jogos Vorazes</td>
+                        <td>8.5</td>
+                    </tr>
+                    <tr>
+                        <td>Série</td>
+                        <td>Shadowhunters</td>
+                        <td>7.8</td>
+                    </tr>
+                    <tr>
+                        <td>Livro</td>
+                        <td>Flores para Algernon</td>
+                        <td>9.0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- SEÇÃO DE METODOLOGIA: conteúdo textual relevante que fortalece o SEO
+             e demonstra transparência para o leitor -->
+        <section id="metodologia">
+            <h2>Como fazemos nossas críticas</h2>
+            <p>
+                Toda obra avaliada pela equipe do E-Reviews passa por um processo
+                semelhante. Primeiro, consumimos o conteúdo por completo, sem
+                cortes, para formar uma opinião justa. Depois, cada integrante
+                atribui uma nota independente em cinco critérios: roteiro,
+                atuação ou jogabilidade, direção ou design, trilha sonora e
+                valor de replay ou releitura.
+            </p>
+            <p>
+                A nota final que você vê nas tarjetas é a média desses critérios,
+                arredondada em uma escala de zero a dez. Sempre que possível,
+                indicamos para quem a obra é recomendada e em que contexto ela
+                funciona melhor, seja uma noite de maratona, uma viagem longa ou
+                uma tarde de leitura com calma. Nosso compromisso é com a
+                honestidade: não aceitamos patrocínio que influencie as notas, e
+                sinalizamos claramente quando um título nos agradou menos.
+            </p>
+        </section>
+
+        <!-- SEÇÃO DE FORMULÁRIO: permite interação, aumentando o engajamento do usuário -->
+        <section id="enviar">
+            <h2>Envie sua Crítica</h2>
+
+            <form>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="voce@exemplo.com" required>
+
+                <label for="categoria">Categoria:</label>
+                <select id="categoria" name="categoria">
+                    <option value="filme">Filme</option>
+                    <option value="serie">Série</option>
+                    <option value="livro">Livro</option>
+                    <option value="jogo">Jogo</option>
+                </select>
+
+                <label for="mensagem">Sua crítica:</label>
+                <textarea id="mensagem" name="mensagem" rows="4" placeholder="Escreva sua opinião"></textarea>
+
+                <button type="submit">Enviar crítica</button>
+            </form>
+        </section>
+
+        <!-- SEÇÃO DE LINKS EXTERNOS: links descritivos e seguros (rel="noopener noreferrer") -->
+        <section id="referencias">
+            <h2>Referências e Repositório</h2>
+
+            <!-- SEO: links externos de qualidade e com texto descritivo contribuem para a autoridade -->
+            <ul class="links">
+                <li>
+                    <a href="https://github.com/NickPugles/Web_Design"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        Repositório de Web Design no GitHub
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.google.com/search-quality-guidelines"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        Diretrizes de qualidade de busca do Google
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- NOVO ELEMENTO (Aula 6): botão "voltar ao topo" com position: fixed,
+         ancorado no canto inferior direito (bottom/right) durante todo o scroll.
+         O href="#topo" reutiliza a âncora do cabeçalho (navegação por ID) -->
+    <a href="#inicio" class="voltar-topo" aria-label="Voltar ao topo da página">↑ Topo</a>
+
+    <!-- RODAPÉ: informações institucionais e links secundários -->
+    <footer class="rodape">
+        <p>&copy; 2026 E-Reviews - Todos os direitos reservados.</p>
+
+        <nav aria-label="Links do rodapé">
+            <a href="#introducao">Sobre</a>
+            <a href="#enviar">Contato</a>
+            <a href="#referencias">Referências</a>
+        </nav>
+    </footer>
+
+</body>
+
+</html>
