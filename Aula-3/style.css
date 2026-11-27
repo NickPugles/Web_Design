@@ -1,0 +1,214 @@
+
+/* =========================================
+   CONFIGURAÇÕES GERAIS DA PÁGINA
+   ========================================= */
+
+/* Remove margens e espaçamentos padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Configura o corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+
+    /* Faz a página ocupar toda a altura da tela */
+    min-height: 100vh;
+
+    /* Organiza os elementos verticalmente */
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================================
+   CABEÇALHO E TÍTULOS
+   ========================================= */
+
+/* Estilização do cabeçalho principal */
+.cabecalho {
+    background-color: #e2e8f0;
+    padding: 20px;
+}
+
+/* Primeiro título centralizado */
+.cabecalho h1 {
+    text-align: center;
+    color: #1e293b;
+}
+
+/* Segundo título alinhado à esquerda */
+.cabecalho h2 {
+    text-align: left;
+}
+
+/* Terceiro título alinhado à direita */
+.cabecalho h3 {
+    text-align: right;
+}
+
+
+/* =========================================
+   MENU DE NAVEGAÇÃO
+   ========================================= */
+
+nav {
+    background-color: #1e293b;
+    padding: 15px;
+    text-align: center;
+}
+
+/* Estilização dos links */
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+/* Efeito ao passar o mouse sobre os links */
+nav a:hover {
+    color: #38bdf8;
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   CONTEÚDO PRINCIPAL
+   ========================================= */
+
+/* Faz o conteúdo ocupar o espaço disponível */
+main {
+    flex: 1;
+    width: 100%;
+    padding: 20px;
+}
+
+
+/* =========================================
+   SEÇÃO DE POSTS
+   ========================================= */
+
+#posts {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+/* Estilização do artigo */
+.post {
+    padding: 10px;
+}
+
+/* Espaçamento entre os parágrafos */
+.post p {
+    margin: 15px 0;
+}
+
+/* Cabeçalho interno do artigo */
+.post header {
+    background-color: transparent;
+    padding: 0;
+}
+
+/* Título do artigo alinhado à esquerda */
+.post header h2 {
+    text-align: left;
+}
+
+
+/* =========================================
+   FORMATAÇÃO DOS TEXTOS
+   ========================================= */
+
+/* Texto sublinhado */
+.sublinhado {
+    text-decoration: underline;
+}
+
+/* Texto riscado */
+.riscado {
+    text-decoration: line-through;
+}
+
+/* Texto centralizado */
+.center {
+    text-align: center;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+/* Texto com alinhamento justificado */
+.justificado {
+    text-align: justify;
+}
+
+
+/* =========================================
+   BARRA LATERAL
+   ========================================= */
+
+#lateral {
+    background-color: #e2e8f0;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+/* Espaçamento do título da barra lateral */
+#lateral h3 {
+    margin-bottom: 10px;
+}
+
+
+/* =========================================
+   RODAPÉ
+   ========================================= */
+
+#rodape {
+    background-color: #1e293b;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Remove a margem do parágrafo do rodapé */
+#rodape p {
+    margin: 0;
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    /* Ajusta o conteúdo para telas menores */
+    main {
+        padding: 10px;
+    }
+
+    /* Reduz o espaçamento do cabeçalho */
+    .cabecalho {
+        padding: 15px;
+    }
+
+    /* Ajusta os links do menu */
+    nav a {
+        margin: 0 5px;
+    }
+
+    /* Reduz o espaçamento das seções */
+    #posts,
+    #lateral {
+        padding: 15px;
+    }
+
+}

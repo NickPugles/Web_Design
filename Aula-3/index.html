@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<!-- Define que o documento utiliza HTML5 -->
+
+<html lang="pt-BR">
+<!-- Define o idioma do documento -->
+
+<head>
+    <!-- Define a codificação de caracteres -->
+    <meta charset="utf-8">
+
+    <!-- Permite a adaptação da página para celulares -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título da página -->
+    <title>Aula 3</title>
+
+    <!-- Importa o arquivo de estilos CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- CABEÇALHO PRINCIPAL -->
+    <header class="cabecalho">
+
+        <!-- Título principal centralizado -->
+        <h1>Fundamentos do HTML</h1>
+
+        <!-- Segundo título alinhado à esquerda -->
+        <h2>Aprendendo HTML5</h2>
+
+        <!-- Terceiro título alinhado à direita -->
+        <h3>Desenvolvimento Web</h3>
+
+        <!-- Demais níveis de títulos -->
+        <h4>Quarto título</h4>
+        <h5>Quinto título</h5>
+        <h6>Sexto título</h6>
+
+    </header>
+
+    <!-- MENU DE NAVEGAÇÃO -->
+    <nav>
+        <p>
+            <!-- Links de navegação para as seções da página -->
+            <a href="#posts">Posts</a> |
+            <a href="#lateral">Lateral</a> |
+            <a href="#rodape">Rodapé</a>
+        </p>
+    </nav>
+
+    <!-- CONTEÚDO PRINCIPAL DA PÁGINA -->
+    <main>
+
+        <!-- SEÇÃO DESTINADA AOS POSTS -->
+        <section id="posts">
+
+            <!-- ARTIGO PRINCIPAL -->
+            <article class="post">
+
+                <!-- Cabeçalho do artigo -->
+                <header>
+                    <h2>Meu Blog – Primeiro Post</h2>
+                </header>
+
+                <!-- PARÁGRAFO COM FORMATAÇÕES DE TEXTO -->
+                <p>
+                    Este é um exemplo de texto com
+                    <strong>negrito</strong>,
+                    <em>itálico</em>,
+                    <span class="sublinhado">texto sublinhado</span>
+                    e
+                    <span class="riscado">texto riscado</span>.
+
+                    Também podemos utilizar índices:
+                    H<sub>2</sub>O representa a água e
+                    2<sup>2</sup> representa dois elevado ao quadrado.
+                </p>
+
+                <!-- PARÁGRAFO COM ESTILIZAÇÃO INLINE -->
+                <p style="color: blue; font-size: 22px;">
+                    Este texto está na cor azul e possui um tamanho
+                    de fonte maior utilizando CSS inline.
+                </p>
+
+                <!-- TEXTO CENTRALIZADO -->
+                <div class="center">
+                    Este texto está centralizado.
+                </div>
+
+                <!-- PARÁGRAFO JUSTIFICADO COM QUEBRA DE LINHA -->
+                <p class="justificado">
+                    O HTML é uma linguagem de marcação utilizada para
+                    estruturar páginas da internet. Por meio de suas
+                    diversas tags, podemos organizar textos, imagens,
+                    links, tabelas e outros elementos que compõem
+                    um documento web.
+
+                    <br>
+
+                    Continuando o conteúdo, podemos utilizar CSS para
+                    personalizar a aparência dos elementos, modificar
+                    cores, tamanhos, espaçamentos e alinhamentos,
+                    tornando as páginas mais organizadas e agradáveis.
+                </p>
+
+            </article>
+
+        </section>
+
+        <!-- BARRA LATERAL -->
+        <aside id="lateral">
+
+            <!-- Título da barra lateral -->
+            <h3>Conteúdo Relacionado</h3>
+
+            <!-- Texto explicativo -->
+            <p>
+                Nesta seção encontramos conteúdos relacionados
+                ao desenvolvimento web, incluindo HTML, CSS,
+                estruturação de páginas e formatação de textos.
+            </p>
+
+        </aside>
+
+    </main>
+
+    <!-- RODAPÉ DA PÁGINA -->
+    <footer id="rodape">
+
+        <!-- Informação de direitos autorais -->
+        <p>
+            © 2025 – Exemplo didático de HTML da Aula
+        </p>
+
+    </footer>
+
+</body>
+</html>
